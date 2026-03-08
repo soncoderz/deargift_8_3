@@ -1059,9 +1059,7 @@
     <!-- Scene 1: Float -->
     <div class="scene" id="sc-float">
       <div class="float-bar">
-        <button class="float-up-btn" id="float-up-btn" onclick="document.getElementById('fp-inp').click()">📷 Thêm ảnh
-          bay</button>
-        <input type="file" id="fp-inp" accept="image/*" multiple style="display:none" onchange="addFloatPhotos(this)">
+        <div class="float-up-btn" style="cursor: default; opacity: 0.7;">⏳ Đợi một chút...</div>
       </div>
     </div>
 
@@ -1083,8 +1081,7 @@
         </div>
 
         <button class="back-sphere-btn" id="back-sphere-btn" onclick="collapseSphere()">🌐 Quay lại quả cầu</button>
-        <button class="sphere-upload-btn" onclick="document.getElementById('sp-inp').click()">📷 Thêm ảnh</button>
-        <input type="file" id="sp-inp" accept="image/*" multiple style="display:none" onchange="addSpherePhotos(this)">
+        <!-- Removed upload button -->
       </div>
     </div>
 
@@ -1142,21 +1139,21 @@
         key: 'me', name: '💗 Mẹ', emoji: '🌹', badge: '💗 Mẹ',
         to: '💌 Gửi Mẹ yêu dấu,', title: "Happy Women's Day! 💗",
         body: `Nhân ngày Quốc tế Phụ nữ 8/3,\ncon muốn gửi đến <b>Mẹ</b> lời chúc từ tận đáy lòng 🥹\n\nMẹ là người phụ nữ <b>tuyệt vời nhất</b> trong cuộc đời con.\nCảm ơn Mẹ đã luôn yêu thương, hi sinh và che chở.\nMỗi nụ cười của Mẹ là <b>ánh sáng</b> của cả gia đình 🌟\n\nCon chúc Mẹ luôn <b>mạnh khỏe</b>, tươi trẻ và hạnh phúc! 💕`,
-        from: '— Con yêu Mẹ nhiều lắm! ❤️ —', deco: '🌹💗🌸', slot: 'me',
+        from: '— ❤️❤️❤️ —', deco: '🌹💗🌸', slot: 'me',
         colors: ['#ff6eb5', '#ff4d94', '#c084fc', '#ff85a6', '#ffb3d4']
       },
       '0803': {
         key: 'ca', name: '🌸 Chị Thương', emoji: '🌸', badge: '🌸 Chị Thương',
         to: '💌 Gửi Chị Thương thân thương,', title: "Happy Women's Day! 🌸",
         body: `Nhân ngày 8/3 đặc biệt này,\nem muốn gửi đến <b>Chị Thương</b> thật nhiều yêu thương 💜\n\nChị là người chị <b>dịu dàng, ấm áp</b> và luôn quan tâm em.\nCảm ơn chị đã luôn ở bên, lắng nghe và động viên em 🌸\n\nEm chúc chị luôn <b>xinh đẹp</b> như hoa mùa xuân,\nthành công và <b>hạnh phúc</b> mãi mãi! ✨`,
-        from: '— Em yêu Chị nhiều! 💜 —', deco: '🌸💜🦋', slot: 'ca',
+        from: '— 💜💜💜 —', deco: '🌸💜🦋', slot: 'ca',
         colors: ['#c084fc', '#a855f7', '#e879f9', '#d8b4fe', '#f3e8ff']
       },
       '1234': {
         key: 'hai', name: '🌻 Chị Mến', emoji: '🌻', badge: '🌻 Chị Mến',
         to: '💌 Gửi Chị Mến vui tính,', title: "Happy Women's Day! 🌻",
         body: `Ngày 8/3 này em gửi đến <b>Chị Mến</b>\nmột thiệp nhỏ đầy yêu thương 🧡\n\nChị là người chị <b>năng động, vui vẻ</b> và rực rỡ,\nluôn mang lại tiếng cười cho cả nhà ☀️\n\nEm chúc chị luôn <b>tươi vui</b> như nắng sớm,\nngập tràn niềm vui và được <b>yêu thương</b> mãi! 🌟`,
-        from: '— Em yêu Chị nhiều! 🧡 —', deco: '🌻🧡☀️', slot: 'hai',
+        from: '— 🧡🧡🧡 —', deco: '🌻🧡☀️', slot: 'hai',
         colors: ['#f59e0b', '#f97316', '#ef4444', '#fcd34d', '#fef3c7']
       },
     };
@@ -1478,9 +1475,11 @@
     let floatTimers = [];
 
     function buildFloat() {
-      // Style the button
-      const btn = document.getElementById('float-up-btn');
-      btn.style.background = `linear-gradient(135deg,${CP.colors[0]},${CP.colors[2]})`;
+      // Style the message
+      const btn = document.querySelector('.float-up-btn');
+      if (btn) {
+        btn.style.background = `linear-gradient(135deg,${CP.colors[0]},${CP.colors[2]})`;
+      }
       // Restart loops
       startFloatLoop();
     }
